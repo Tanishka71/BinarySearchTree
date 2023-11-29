@@ -22,7 +22,11 @@ public class BinarySTMain {
         bst.add(67);
         bst.display();
         
+        boolean found = bst.search(63);
+        System.out.println("Key 63 found in the binary tree: " + found);
+        
         int treeSize = bst.getRoot().size();
         System.out.println("Size of the binary tree: " + treeSize);
+    }
 	}
-}
+

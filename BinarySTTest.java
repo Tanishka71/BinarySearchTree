@@ -15,5 +15,14 @@ class BinarySTTest {
 		assertEquals(3,s, 
 				"Gives the size of the obj: ");
 	}
+	@Test
+	void test2() {
+		 obj.add(56);
+	     obj.add(30);
+	     obj.add(70);
+		boolean s=obj.search(30);
+		assertEquals(true,s, 
+				"Gives the size of the obj: ");
+	}
 
 }

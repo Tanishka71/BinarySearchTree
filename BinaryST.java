@@ -26,6 +26,13 @@ interface INode<K extends Comparable<K>> {
 	 * @return:integer
 	 */
     int size();
+    
+	/*
+	 * @desc: SEARCHES FOR AN ELEMENTS
+	 * @params:object data/key
+	 * @return:boolean
+	 */
+    boolean search(K key);
 }
 
 
@@ -97,6 +104,24 @@ class MyBinaryNode<K extends Comparable<K>> implements INode<K> {
             return leftSize + rightSize + 1; // Add 1 for the current node
 
     }
+     
+ 	/*
+ 	 * @desc: SEARCHES FOR AN ELEMENTS
+ 	 * @params:object data/key
+ 	 * @return:boolean
+ 	 */
+     @Override
+     public boolean search(K searchKey) {
+         // Recursively search for the key in the subtree rooted at this node
+         if (searchKey.compareTo(key) == 0) {
+             return true; // Found the key in this node
+         } else if (searchKey.compareTo(key) < 0 && left != null) {
+             return left.search(searchKey); // Search in the left subtree
+         } else if (searchKey.compareTo(key) > 0 && right != null) {
+             return right.search(searchKey); // Search in the right subtree
+         }
+         return false; // Key not found
+     }
 }
 
 // Binary Search Tree class
@@ -140,6 +165,16 @@ class BinaryST<K extends Comparable<K>> {
         }
 
         return root;
+    }
+    
+	/*
+ 	 * @desc: SEARCHES FOR AN ELEMENTS
+ 	 * @params:object data/key
+ 	 * @return:boolean
+ 	 */
+    public boolean search(K key) {
+        // Start the search from the root
+        return root != null && root.search(key);
     }
     
     /*
