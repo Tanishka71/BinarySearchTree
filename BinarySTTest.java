@@ -22,7 +22,7 @@ class BinarySTTest {
 	     obj.add(70);
 		boolean s=obj.search(30);
 		assertEquals(true,s, 
-				"Gives the size of the obj: ");
+				"SEARCHES FOR AN OBJECT: ");
 	}
 
 }
