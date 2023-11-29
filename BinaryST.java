@@ -20,6 +20,12 @@ interface INode<K extends Comparable<K>> {
 	 * @params: right - The right child node to be set.
 	 */
     void setRight(INode<K> right);
+	/*
+	 * @desc: gives the size of the tree
+	 * @params:none
+	 * @return:integer
+	 */
+    int size();
 }
 
 
@@ -78,6 +84,19 @@ class MyBinaryNode<K extends Comparable<K>> implements INode<K> {
     public void setRight(INode<K> right) {
         this.right = right;
     }
+   
+	/*
+	 * @desc: gives the size of the tree
+	 * @params:none
+	 * @return:integer
+	 */
+     public int size() {
+            // Calculate the size of the subtree rooted at this node
+            int leftSize = (left != null) ? left.size() : 0;
+            int rightSize = (right != null) ? right.size() : 0;
+            return leftSize + rightSize + 1; // Add 1 for the current node
+
+    }
 }
 
 // Binary Search Tree class
@@ -87,7 +106,11 @@ class BinaryST<K extends Comparable<K>> {
     public BinaryST() {
         this.root = null;
     }
-
+     
+    //@desc:Returns the root of the tree
+    public INode<K> getRoot() {
+        return root;
+    }
 	/*
 	 * @desc: Adds a key to the Binary Search Tree.
 	 * @params: key - The key to be added.
@@ -126,18 +149,22 @@ class BinaryST<K extends Comparable<K>> {
 	 */
     
     public void display() {
-        displayOrder(root);
+    	System.out.println("Displaying by inorder (ascending):");
+        displayInOrder(root);
+        System.out.println();
     }
-    private void displayOrder(INode<K> root) {
+    private void displayInOrder(INode<K> root) {
         if (root != null) {
             // Display left subtree
-            displayOrder(root.getLeft());
+            displayInOrder(root.getLeft());
 
             // Display current node's key
             System.out.print(root.getKey() + " ");
 
             // Display right subtree
-            displayOrder(root.getRight());
+            displayInOrder(root.getRight());
         }
+      
     }
+   
 }
